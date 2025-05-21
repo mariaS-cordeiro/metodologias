@@ -14,10 +14,10 @@ metodologias = [
 abas = st.tabs([
     "📋 Entrevistas",
     "👀 Observação",
-    "💬 Grupos Focais",
+    "💬 Grupos focais",
     "🌍 Etnografia",
     "📑 Documentos",
-    "📚 Estudos de Caso",
+    "📚 Estudo de caso",
     "📊 Survey"
 ])
 
@@ -25,7 +25,7 @@ abas = st.tabs([
 abas_textos = {
     "entrevistas": (
         "Metodologia qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
-        "https://www.youtube.com/watch?v=KqgZeYsbBWU"
+        "https://www.youtube.com/watch?v=wuIKfjvH6SM"
     ),
     "observacao": (
         "Metodologia qualitativa baseada na observação sistemática de comportamentos e contextos, podendo ser participante ou não.",
