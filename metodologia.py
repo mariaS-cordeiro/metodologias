@@ -4,6 +4,13 @@ import base64
 st.set_page_config(page_title="Ambiente Educacional", layout="wide")
 st.title("🎓 Ambiente Educacional: Metodologias de Pesquisa")
 
+# Lista com os nomes das metodologias (chaves)
+metodologias = [
+    "entrevistas", "observacao", "grupos_focais",
+    "etnografia", "documentos", "caso", "survey"
+]
+
+# Gera abas com os títulos formatados
 abas = st.tabs([
     "📋 Entrevistas",
     "👀 Observação",
@@ -14,33 +21,47 @@ abas = st.tabs([
     "📊 Survey"
 ])
 
-# Título, descrição e vídeo de cada metodologia
+# Descrições e links de vídeo por chave
 abas_textos = {
-    "entrevistas": ("Técnica qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
-                    "https://www.youtube.com/watch?v=KqgZeYsbBWU"),
-    "observacao": ("Observação sistemática de comportamentos e contextos, podendo ser participante ou não.",
-                   "https://www.youtube.com/watch?v=lFweX8gRuvY"),
-    "grupos_focais": ("Discussão moderada entre participantes para explorar percepções e significados compartilhados.",
-                      "https://www.youtube.com/watch?v=ihTQPBxZpRs"),
-    "etnografia": ("Imersão prolongada do pesquisador no campo para compreender práticas culturais.",
-                   "https://www.youtube.com/watch?v=zngvQobfaBo"),
-    "documentos": ("Análise de textos, arquivos, registros e materiais institucionais ou históricos.",
-                   "https://www.youtube.com/watch?v=5MdxS82aEdc"),
-    "caso": ("Investigação profunda de um único caso contextualizado.",
-             "https://www.youtube.com/watch?v=3gVjUoaeoG0"),
-    "survey": ("Técnica quantitativa baseada em questionários estruturados aplicados a grandes amostras.",
-               "https://www.youtube.com/watch?v=Ge52zqBLlDs")
+    "entrevistas": (
+        "Técnica qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
+        "https://www.youtube.com/watch?v=KqgZeYsbBWU"
+    ),
+    "observacao": (
+        "Observação sistemática de comportamentos e contextos, podendo ser participante ou não.",
+        "https://www.youtube.com/watch?v=lFweX8gRuvY"
+    ),
+    "grupos_focais": (
+        "Discussão moderada entre participantes para explorar percepções e significados compartilhados.",
+        "https://www.youtube.com/watch?v=tgkY9dIfF9I"
+    ),
+    "etnografia": (
+        "Imersão prolongada do pesquisador no campo para compreender práticas culturais.",
+        "https://www.youtube.com/watch?v=zngvQobfaBo"
+    ),
+    "documentos": (
+        "Análise de textos, arquivos, registros e materiais institucionais ou históricos.",
+        "https://www.youtube.com/watch?v=5MdxS82aEdc"
+    ),
+    "caso": (
+        "Investigação profunda de um único caso contextualizado.",
+        "https://www.youtube.com/watch?v=3gVjUoaeoG0"
+    ),
+    "survey": (
+        "Técnica quantitativa baseada em questionários estruturados aplicados a grandes amostras.",
+        "https://www.youtube.com/watch?v=Ge52zqBLlDs"
+    )
 }
 
-# Função para gerar link de download de anotações
+# Gera link para baixar anotações como .txt
 def gerar_download(anotacoes, nome):
     conteudo = f"Anotações sobre {nome.capitalize()}:\n\n{anotacoes}"
     b64 = base64.b64encode(conteudo.encode()).decode()
     return f'<a href="data:file/txt;base64,{b64}" download="anotacoes_{nome}.txt">📥 Baixar anotações</a>'
 
-# Interface única para cada aba
-def interface_metodologia(nome, descricao, video_url, chave):
-    st.markdown(f"### 🧭 Sobre {nome}")
+# Interface de cada aba
+def interface_metodologia(titulo, descricao, video_url, chave):
+    st.markdown(f"### 🧭 Sobre {titulo}")
     st.write(descricao)
 
     st.markdown("### 📂 Upload de base de dados ou materiais complementares")
@@ -54,11 +75,11 @@ def interface_metodologia(nome, descricao, video_url, chave):
     st.markdown("### 📝 Bloco de notas (anotações individuais)")
     anotacoes = st.text_area("Escreva suas definições, conceitos e observações:", height=250, key=f"{chave}_notas")
 
-    # Botão de download só aparece se há texto
     if anotacoes:
         st.markdown(gerar_download(anotacoes, chave), unsafe_allow_html=True)
 
-# Executa a função em cada aba
-for aba, (descricao, video) in zip(abas, abas_textos.items()):
+# Executa interface para cada aba/metodologia
+for aba, chave in zip(abas, metodologias):
+    descricao, video = abas_textos[chave]
     with aba:
-        interface_metodologia(aba[2:], descricao, video, aba[2:])
+        interface_metodologia(chave.capitalize(), descricao, video, chave)
