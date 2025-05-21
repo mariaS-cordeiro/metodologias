@@ -1,8 +1,8 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="Metodologia da Pesquisa em Comunicação Digital", layout="wide")
-st.title("🎓 Metodologia da Pesquisa em Comunicação Digital")
+st.set_page_config(page_title="Metodologia da pesquisa em comunicação digital", layout="wide")
+st.title("🎓 Metodologia da pesquisa em comunicação digital")
 
 # Lista com os nomes das metodologias (chaves)
 metodologias = [
