@@ -33,7 +33,7 @@ abas_textos = {
     ),
     "grupos_focais": (
         "Discussão moderada entre participantes para explorar percepções e significados compartilhados.",
-        "https://www.youtube.com/watch?v=tgkY9dIfF9I"
+        "https://www.youtube.com/watch?v=ihTQPBxZpRs"
     ),
     "etnografia": (
         "Imersão prolongada do pesquisador no campo para compreender práticas culturais.",
