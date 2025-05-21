@@ -1,8 +1,8 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="Ambiente Educacional", layout="wide")
-st.title("🎓 Ambiente Educacional: Metodologias de Pesquisa")
+st.set_page_config(page_title="Metodologia da Pesquisa em Comunicação Digital", layout="wide")
+st.title("🎓 Metodologia da Pesquisa em Comunicação Digital")
 
 # Lista com os nomes das metodologias (chaves)
 metodologias = [
@@ -24,19 +24,19 @@ abas = st.tabs([
 # Descrições e links de vídeo por chave
 abas_textos = {
     "entrevistas": (
-        "Técnica qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
+        "Metodologia qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
         "https://www.youtube.com/watch?v=KqgZeYsbBWU"
     ),
     "observacao": (
-        "Observação sistemática de comportamentos e contextos, podendo ser participante ou não.",
+        "Metodologia qualitativa baseada na observação sistemática de comportamentos e contextos, podendo ser participante ou não.",
         "https://www.youtube.com/watch?v=lFweX8gRuvY"
     ),
     "grupos_focais": (
-        "Discussão moderada entre participantes para explorar percepções e significados compartilhados.",
+        "Metodologia qualitativa baseada na discussão moderada entre participantes para explorar percepções e significados compartilhados.",
         "https://www.youtube.com/watch?v=ihTQPBxZpRs"
     ),
     "etnografia": (
-        "Imersão prolongada do pesquisador no campo para compreender práticas culturais.",
+        "Metodologia qualitativa baseada na imersão prolongada do pesquisador no campo para compreender práticas culturais.",
         "https://www.youtube.com/watch?v=zngvQobfaBo"
     ),
     "documentos": (
@@ -48,7 +48,7 @@ abas_textos = {
         "https://www.youtube.com/watch?v=3gVjUoaeoG0"
     ),
     "survey": (
-        "Técnica quantitativa baseada em questionários estruturados aplicados a grandes amostras.",
+        "Metodologia quantitativa baseada em questionários estruturados aplicados a grandes quatidades e amostras",
         "https://www.youtube.com/watch?v=Ge52zqBLlDs"
     )
 }
