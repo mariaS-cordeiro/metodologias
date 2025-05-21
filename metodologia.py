@@ -7,7 +7,7 @@ st.title("🎓 Metodologia da pesquisa em comunicação digital")
 # Lista com os nomes das metodologias (chaves)
 metodologias = [
     "entrevistas", "observacao", "grupos_focais",
-    "etnografia", "documentos", "caso", "survey"
+    "etnografia", "documentos", "Estudo de caso", "survey"
 ]
 
 # Gera abas com os títulos formatados
@@ -29,7 +29,7 @@ abas_textos = {
     ),
     "observacao": (
         "Metodologia qualitativa baseada na observação sistemática de comportamentos e contextos, podendo ser participante ou não.",
-        "https://www.youtube.com/watch?v=lFweX8gRuvY"
+        "https://www.youtube.com/watch?v=LA3HBkH7QJE"
     ),
     "grupos_focais": (
         "Metodologia qualitativa baseada na discussão moderada entre participantes para explorar percepções e significados compartilhados.",
@@ -37,19 +37,19 @@ abas_textos = {
     ),
     "etnografia": (
         "Metodologia qualitativa baseada na imersão prolongada do pesquisador no campo para compreender práticas culturais.",
-        "https://www.youtube.com/watch?v=zngvQobfaBo"
+        "https://www.youtube.com/watch?v=6LIF2kBk1Z0"
     ),
     "documentos": (
         "Análise de textos, arquivos, registros e materiais institucionais ou históricos.",
-        "https://www.youtube.com/watch?v=5MdxS82aEdc"
+        "https://www.youtube.com/watch?v=7rX9vBATdzc"
     ),
-    "caso": (
+    "Estudo de caso": (
         "Investigação profunda de um único caso contextualizado.",
-        "https://www.youtube.com/watch?v=3gVjUoaeoG0"
+        "https://www.youtube.com/watch?v=YwhpLMPX58c"
     ),
     "survey": (
         "Metodologia quantitativa baseada em questionários estruturados aplicados a grandes quatidades e amostras",
-        "https://www.youtube.com/watch?v=Ge52zqBLlDs"
+        "https://www.youtube.com/watch?v=S9EJKvja96Q"
     )
 }
 
