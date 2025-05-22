@@ -4,13 +4,11 @@ import base64
 st.set_page_config(page_title="Metodologia da pesquisa em comunicação digital", layout="wide")
 st.title("🎓 Metodologia da pesquisa em comunicação digital")
 
-# Lista com os nomes das metodologias (chaves)
 metodologias = [
     "entrevistas", "observacao", "grupos_focais",
     "etnografia", "documentos", "Estudo de caso", "survey"
 ]
 
-# Gera abas com os títulos formatados
 abas = st.tabs([
     "📋 Entrevistas",
     "👀 Observação",
@@ -21,7 +19,6 @@ abas = st.tabs([
     "📊 Survey"
 ])
 
-# Descrições e links de vídeo por chave
 abas_textos = {
     "entrevistas": (
         "Metodologia qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
@@ -48,18 +45,15 @@ abas_textos = {
         "https://www.youtube.com/watch?v=YwhpLMPX58c"
     ),
     "survey": (
-        "Metodologia quantitativa baseada em questionários estruturados aplicados a grandes quatidades e amostras",
+        "Metodologia quantitativa baseada em questionários estruturados aplicados a grandes quantidades e amostras.",
         "https://www.youtube.com/watch?v=S9EJKvja96Q"
     )
 }
 
-# Gera link para baixar anotações como .txt
-def gerar_download(anotacoes, nome):
-    conteudo = f"Anotações sobre {nome.capitalize()}:\n\n{anotacoes}"
-    b64 = base64.b64encode(conteudo.encode()).decode()
-    return f'<a href="data:file/txt;base64,{b64}" download="anotacoes_{nome}.txt">📥 Baixar anotações</a>'
+def gerar_download(texto, nome_arquivo):
+    b64 = base64.b64encode(texto.encode()).decode()
+    return f'<a href="data:file/txt;base64,{b64}" download="{nome_arquivo}">📥 Baixar</a>'
 
-# Interface de cada aba
 def interface_metodologia(titulo, descricao, video_url, chave):
     st.markdown(f"### 🧭 Sobre {titulo}")
     st.write(descricao)
@@ -73,12 +67,69 @@ def interface_metodologia(titulo, descricao, video_url, chave):
     st.video(video_url)
 
     st.markdown("### 📝 Bloco de notas (anotações individuais)")
-    anotacoes = st.text_area("Escreva suas definições, conceitos e observações:", height=250, key=f"{chave}_notas")
-
+    anotacoes = st.text_area("Escreva suas definições, conceitos e observações:", height=200, key=f"{chave}_notas")
     if anotacoes:
-        st.markdown(gerar_download(anotacoes, chave), unsafe_allow_html=True)
+        st.markdown(gerar_download(anotacoes, f"anotacoes_{chave}.txt"), unsafe_allow_html=True)
 
-# Executa interface para cada aba/metodologia
+    st.markdown("### ✍️ Ficha de Grupo")
+    grupo = st.text_input("Nome do Grupo", key=f"{chave}_grupo")
+    metodologia = st.text_input("Metodologia", key=f"{chave}_metodologia")
+    definicao = st.text_area("1. Definição", height=80, key=f"{chave}_definicao")
+    etapas = st.text_area("2. Etapas de aplicação", height=80, key=f"{chave}_etapas")
+    tipo_dado = st.text_area("3. Tipo de dado", height=60, key=f"{chave}_tipo_dado")
+    vantagens = st.text_area("4. Vantagens e limitações", height=80, key=f"{chave}_vantagens")
+    exemplo = st.text_area("5. Exemplo de aplicação", height=80, key=f"{chave}_exemplo")
+    pergunta = st.text_area("6. Pergunta para os visitantes", height=60, key=f"{chave}_pergunta")
+
+    ficha_grupo = f"""FICHA DE GRUPO
+Nome do Grupo: {grupo}
+Metodologia: {metodologia}
+
+1. Definição:
+{definicao}
+
+2. Etapas de aplicação:
+{etapas}
+
+3. Tipo de dado:
+{tipo_dado}
+
+4. Vantagens e limitações:
+{vantagens}
+
+5. Exemplo de aplicação:
+{exemplo}
+
+6. Pergunta para os visitantes:
+{pergunta}
+"""
+    st.download_button("📥 Baixar Ficha de Grupo", data=ficha_grupo, file_name=f"ficha_grupo_{chave}.txt")
+
+    st.markdown("### 📄 Ficha de Visita")
+    grupo_visitado = st.text_input("Nome do grupo visitado", key=f"{chave}_visitado")
+    palavra_chave = st.text_area("1. Palavra-chave", height=50, key=f"{chave}_palavra_chave")
+    atencao = st.text_area("2. O que me chamou atenção", height=60, key=f"{chave}_atencao")
+    diferenca = st.text_area("3. Diferença em relação à minha metodologia", height=60, key=f"{chave}_diferenca")
+    duvidas = st.text_area("4. Perguntas ou dúvidas", height=70, key=f"{chave}_duvidas")
+
+    ficha_visita = f"""FICHA DE VISITA
+Grupo visitado: {grupo_visitado}
+
+1. Palavra-chave:
+{palavra_chave}
+
+2. O que me chamou atenção:
+{atencao}
+
+3. Diferença em relação à minha metodologia:
+{diferenca}
+
+4. Perguntas ou dúvidas:
+{duvidas}
+"""
+    st.download_button("📥 Baixar Ficha de Visita", data=ficha_visita, file_name=f"ficha_visita_{chave}.txt")
+
+# Executa interface por aba
 for aba, chave in zip(abas, metodologias):
     descricao, video = abas_textos[chave]
     with aba:
