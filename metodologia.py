@@ -71,10 +71,10 @@ def interface_metodologia(titulo, descricao, video_url, chave):
     metodologia = st.text_input("Metodologia", key=f"{chave}_metodologia")
     definicao = st.text_area("1. Definição", height=80, key=f"{chave}_definicao")
     etapas = st.text_area("2. Etapas de aplicação", height=80, key=f"{chave}_etapas")
-    tipo_dado = st.text_area("3. Tipo de dado", height=60, key=f"{chave}_tipo_dado")
+    tipo_dado = st.text_area("3. Tipo de dado", height=70, key=f"{chave}_tipo_dado")
     vantagens = st.text_area("4. Vantagens e limitações", height=80, key=f"{chave}_vantagens")
     exemplo = st.text_area("5. Exemplo de aplicação", height=80, key=f"{chave}_exemplo")
-    pergunta = st.text_area("6. Pergunta para os visitantes", height=60, key=f"{chave}_pergunta")
+    pergunta = st.text_area("6. Pergunta para os visitantes", height=70, key=f"{chave}_pergunta")
 
     ficha_grupo = f"""FICHA DE GRUPO
 Nome do Grupo: {grupo}
@@ -102,10 +102,10 @@ Metodologia: {metodologia}
 
     st.markdown("### 📄 Ficha de Visita")
     grupo_visitado = st.text_input("Nome do grupo visitado", key=f"{chave}_visitado")
-    palavra_chave = st.text_area("1. Palavra-chave", height=50, key=f"{chave}_palavra_chave")
-    atencao = st.text_area("2. O que me chamou atenção", height=60, key=f"{chave}_atencao")
-    diferenca = st.text_area("3. Diferença em relação à minha metodologia", height=60, key=f"{chave}_diferenca")
-    duvidas = st.text_area("4. Perguntas ou dúvidas", height=70, key=f"{chave}_duvidas")
+    palavra_chave = st.text_area("1. Palavra-chave", height=70, key=f"{chave}_palavra_chave")
+    atencao = st.text_area("2. O que me chamou atenção", height=70, key=f"{chave}_atencao")
+    diferenca = st.text_area("3. Diferença em relação à minha metodologia", height=70, key=f"{chave}_diferenca")
+    duvidas = st.text_area("4. Perguntas ou dúvidas", height=80, key=f"{chave}_duvidas")
 
     ficha_visita = f"""FICHA DE VISITA
 Grupo visitado: {grupo_visitado}
@@ -124,7 +124,7 @@ Grupo visitado: {grupo_visitado}
 """
     st.download_button("📥 Baixar Ficha de Visita", data=ficha_visita, file_name=f"ficha_visita_{chave}.txt")
 
-# Executa cada aba
+# Executa interface em cada aba
 for aba, chave in zip(abas, metodologias):
     descricao, video = abas_textos[chave]
     with aba:
