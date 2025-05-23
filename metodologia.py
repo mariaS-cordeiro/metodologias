@@ -6,13 +6,13 @@ st.set_page_config(page_title="Metodologia da pesquisa em comunicação digital"
 st.title("🎓 Metodologia da pesquisa em comunicação digital")
 
 metodologias = [
-    "entrevistas", "observacao", "grupos_focais",
+    "entrevistas", "observação", "grupos_focais",
     "etnografia", "documentos", "Estudo de caso", "survey"
 ]
 
 abas = st.tabs([
     "📋 Entrevistas", "👀 Observação", "💬 Grupos focais",
-    "🌍 Etnografia", "📑 Documentos", "📚 Estudo de caso", "📊 Survey"
+    "🌍 Etnografia", "📑 Análise documental", "📚 Estudo de caso", "📊 Survey"
 ])
 
 abas_textos = {
@@ -20,7 +20,7 @@ abas_textos = {
         "Metodologia qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
         "https://www.youtube.com/watch?v=wuIKfjvH6SM"
     ),
-    "observacao": (
+    "observação": (
         "Metodologia qualitativa baseada na observação sistemática de comportamentos e contextos.",
         "https://www.youtube.com/watch?v=LA3HBkH7QJE"
     ),
@@ -32,7 +32,7 @@ abas_textos = {
         "Imersão prolongada no campo para compreender práticas culturais.",
         "https://www.youtube.com/watch?v=6LIF2kBk1Z0"
     ),
-    "documentos": (
+    "Análise documental": (
         "Análise de textos, registros e materiais institucionais ou históricos.",
         "https://www.youtube.com/watch?v=7rX9vBATdzc"
     ),
@@ -76,12 +76,12 @@ def interface_metodologia(titulo, descricao, video_url, chave):
         submitted = st.form_submit_button("💾 Salvar Ficha de Grupo")
         if submitted:
             dados = {
-                "Nome do Grupo": grupo,
-                "Metodologia": metodologia,
+                "Componentes do grupo": grupo,
+                "Nome da metodologia": metodologia,
                 "Definição": definicao,
-                "Etapas": etapas,
-                "Tipo de dado": tipo_dado,
-                "Vantagens": vantagens,
+                "Tipo de dado": etapas,
+                "Principais destaques": tipo_dado,
+                "Limitações": vantagens,
                 "Exemplo": exemplo,
                 "Pergunta": pergunta
             }
