@@ -6,8 +6,8 @@ st.set_page_config(page_title="Metodologia da pesquisa em comunicação digital"
 st.title("🎓 Metodologia da pesquisa em comunicação digital")
 
 metodologias = [
-    "entrevistas", "observação", "grupos_focais",
-    "etnografia", "documentos", "Estudo de caso", "survey"
+    "entrevistas", "observacao", "grupos_focais",
+    "etnografia", "documentos", "estudo_de_caso", "survey"
 ]
 
 abas = st.tabs([
@@ -20,7 +20,7 @@ abas_textos = {
         "Metodologia qualitativa baseada em conversas estruturadas, semiestruturadas ou abertas.",
         "https://www.youtube.com/watch?v=wuIKfjvH6SM"
     ),
-    "observação": (
+    "observacao": (
         "Metodologia qualitativa baseada na observação sistemática de comportamentos e contextos.",
         "https://www.youtube.com/watch?v=LA3HBkH7QJE"
     ),
@@ -32,11 +32,11 @@ abas_textos = {
         "Imersão prolongada no campo para compreender práticas culturais.",
         "https://www.youtube.com/watch?v=6LIF2kBk1Z0"
     ),
-    "Análise documental": (
+    "documentos": (
         "Análise de textos, registros e materiais institucionais ou históricos.",
         "https://www.youtube.com/watch?v=7rX9vBATdzc"
     ),
-    "Estudo de caso": (
+    "estudo_de_caso": (
         "Investigação profunda de um único caso contextualizado.",
         "https://www.youtube.com/watch?v=YwhpLMPX58c"
     ),
