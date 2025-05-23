@@ -100,22 +100,21 @@ def interface_metodologia(titulo, descricao, video_url, chave):
         df = pd.read_csv(arquivo)
         st.dataframe(df)
 
-       if len(df) > 0:
-    excluir = st.number_input(
-        "Digite o índice da linha que deseja excluir",
-        min_value=0,
-        max_value=len(df) - 1,
-        step=1,
-        key=f"{chave}_excluir"
-    )
-    if st.button("🗑️ Excluir linha selecionada", key=f"{chave}_botao_excluir"):
-        excluir_linha(arquivo, excluir)
-        st.warning("Linha excluída. Recarregue a página para atualizar a tabela.")
-else:
-    st.info("Nenhuma ficha cadastrada para excluir.")
+        if len(df) > 0:
+            excluir = st.number_input(
+                "Digite o índice da linha que deseja excluir",
+                min_value=0,
+                max_value=len(df) - 1,
+                step=1,
+                key=f"{chave}_excluir"
+            )
+            if st.button("🗑️ Excluir linha selecionada", key=f"{chave}_botao_excluir"):
+                excluir_linha(arquivo, excluir)
+                st.warning("Linha excluída. Recarregue a página para atualizar a tabela.")
+        else:
+            st.info("Nenhuma ficha cadastrada para excluir.")
 
-
-# Executa interface por aba
+# Executa interface em cada aba
 for aba, chave in zip(abas, metodologias):
     descricao, video = abas_textos[chave]
     with aba:
