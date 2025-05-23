@@ -64,12 +64,12 @@ def interface_metodologia(titulo, descricao, video_url, chave):
 
     st.markdown("### ✍️ Ficha de Grupo")
     with st.form(f"form_{chave}"):
-        grupo = st.text_input("Nome do Grupo", key=f"{chave}_grupo")
-        metodologia = st.text_input("Metodologia", key=f"{chave}_metodologia")
+        grupo = st.text_input("Componentes do grupo", key=f"{chave}_grupo")
+        metodologia = st.text_input("Nome da metodologia", key=f"{chave}_metodologia")
         definicao = st.text_area("1. Definição", height=80, key=f"{chave}_definicao")
-        etapas = st.text_area("2. Etapas de aplicação", height=80, key=f"{chave}_etapas")
-        tipo_dado = st.text_area("3. Tipo de dado", height=70, key=f"{chave}_tipo_dado")
-        vantagens = st.text_area("4. Vantagens e limitações", height=80, key=f"{chave}_vantagens")
+        etapas = st.text_area("2. Tipo de dado", height=80, key=f"{chave}_etapas")
+        tipo_dado = st.text_area("3. Principais destaques", height=70, key=f"{chave}_tipo_dado")
+        vantagens = st.text_area("4. Limitações", height=80, key=f"{chave}_vantagens")
         exemplo = st.text_area("5. Exemplo de aplicação", height=80, key=f"{chave}_exemplo")
         pergunta = st.text_area("6. Pergunta para os visitantes", height=70, key=f"{chave}_pergunta")
 
