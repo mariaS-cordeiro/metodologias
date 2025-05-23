@@ -36,7 +36,7 @@ abas_textos = {
         "Análise de textos, registros e materiais institucionais ou históricos.",
         "https://www.youtube.com/watch?v=7rX9vBATdzc"
     ),
-    "Estudo de caso": (
+    "estudo de caso": (
         "Investigação profunda de um único caso contextualizado.",
         "https://www.youtube.com/watch?v=YwhpLMPX58c"
     ),
