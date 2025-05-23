@@ -119,3 +119,68 @@ for aba, chave in zip(abas, metodologias):
     descricao, video = abas_textos[chave]
     with aba:
         interface_metodologia(chave.capitalize(), descricao, video, chave)
+
+import streamlit as st
+import pandas as pd
+import os
+
+def salvar_ficha_visitante(chave, dados):
+    arquivo = f"fichas_visitante_{chave}.csv"
+    if os.path.exists(arquivo):
+        df = pd.read_csv(arquivo)
+    else:
+        df = pd.DataFrame(columns=dados.keys())
+    df = pd.concat([df, pd.DataFrame([dados])], ignore_index=True)
+    df.to_csv(arquivo, index=False)
+
+def excluir_linha_visitante(arquivo, index):
+    df = pd.read_csv(arquivo)
+    df = df.drop(index)
+    df.to_csv(arquivo, index=False)
+
+def ficha_visitante_interface(chave):
+    st.markdown("### 👥 Ficha de Visitante")
+    with st.form(f"form_visitante_{chave}"):
+        metodologia = st.text_input("Metodologia observada", key=f"{chave}_metodologia_v")
+        grupo_visitante = st.text_input("Grupo visitante", key=f"{chave}_grupo_visitante")
+        componentes = st.text_input("Componentes do grupo", key=f"{chave}_componentes")
+        palavra_chave = st.text_area("1. Palavra-chave:", height=70, key=f"{chave}_palavra")
+        atencao = st.text_area("2. O que me chamou atenção:", height=80, key=f"{chave}_atencao")
+        diferenca = st.text_area("3. Diferença em relação à minha metodologia:", height=80, key=f"{chave}_diferenca")
+        perguntas = st.text_area("4. Perguntas ou dúvidas:", height=80, key=f"{chave}_duvidas")
+
+        submitted = st.form_submit_button("💾 Salvar Ficha de Visitante")
+        if submitted:
+            dados = {
+                "Metodologia observada": metodologia,
+                "Grupo visitante": grupo_visitante,
+                "Componentes": componentes,
+                "Palavra-chave": palavra_chave,
+                "O que chamou atenção": atencao,
+                "Diferença": diferenca,
+                "Perguntas ou dúvidas": perguntas
+            }
+            salvar_ficha_visitante(chave, dados)
+            st.success("Ficha de Visitante salva com sucesso!")
+
+    # Visualização e exclusão
+    arquivo = f"fichas_visitante_{chave}.csv"
+    if os.path.exists(arquivo):
+        st.markdown("### 📋 Fichas de Visitantes salvas")
+        df = pd.read_csv(arquivo)
+        st.dataframe(df)
+
+        if len(df) > 0:
+            excluir = st.number_input(
+                "Índice da ficha de visitante que deseja excluir",
+                min_value=0,
+                max_value=len(df) - 1,
+                step=1,
+                key=f"{chave}_excluir_visitante"
+            )
+            if st.button("🗑️ Excluir visitante selecionado", key=f"{chave}_botao_excluir_visitante"):
+                excluir_linha_visitante(arquivo, excluir)
+                st.warning("Linha excluída. Recarregue a página para atualizar a tabela.")
+        else:
+            st.info("Nenhuma ficha de visitante cadastrada para excluir.")
+
