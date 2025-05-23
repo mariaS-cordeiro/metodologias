@@ -12,7 +12,7 @@ metodologias = [
 
 abas = st.tabs([
     "📋 Entrevistas", "👀 Observação", "💬 Grupos focais",
-    "🌍 Etnografia", "📑 Análise documental", "📚 Estudo de caso", "📊 Survey"
+    "🌍 Etnografia", "📁 Análise documental", "📚 Estudo de caso", "📊 Survey"
 ])
 
 abas_textos = {
@@ -38,7 +38,7 @@ def excluir_linha(tipo, chave, index):
     df.to_csv(arquivo, index=False)
 
 def interface_metodologia(titulo, descricao, video_url, chave):
-    st.markdown(f"### 🧭 Sobre {titulo}")
+    st.markdown(f"### 🧝‍♀️ Sobre {titulo}")
     st.write(descricao)
     st.video(video_url)
 
@@ -53,7 +53,7 @@ def interface_metodologia(titulo, descricao, video_url, chave):
         vantagens = st.text_area("4. Limitações", height=80, key=f"{chave}_vantagens")
         exemplo = st.text_area("5. Exemplo de aplicação", height=80, key=f"{chave}_exemplo")
         pergunta = st.text_area("6. Pergunta para os visitantes", height=70, key=f"{chave}_pergunta")
-        if st.form_submit_button("💾 Salvar Ficha de Grupo"):
+        if st.form_submit_button("📂 Salvar Ficha de Grupo"):
             salvar_ficha("grupo", chave, {
                 "Componentes": grupo, "Metodologia": metodologia,
                 "Definição": definicao, "Tipo de dado": etapas,
@@ -83,7 +83,7 @@ def interface_metodologia(titulo, descricao, video_url, chave):
         atencao = st.text_area("2. O que me chamou atenção:", height=80, key=f"{chave}_atencao")
         diferenca = st.text_area("3. Diferença em relação à minha metodologia:", height=80, key=f"{chave}_diferenca")
         perguntas = st.text_area("4. Perguntas ou dúvidas:", height=80, key=f"{chave}_duvidas")
-        if st.form_submit_button("💾 Salvar Ficha de Visitante"):
+        if st.form_submit_button("📂 Salvar Ficha de Visitante"):
             salvar_ficha("visitante", chave, {
                 "Metodologia observada": metodo, "Grupo visitante": grupo_visitante,
                 "Componentes": componentes, "Palavra-chave": palavra,
@@ -102,6 +102,26 @@ def interface_metodologia(titulo, descricao, video_url, chave):
             if st.button("🗑️ Excluir visitante", key=f"{chave}_botao_excluir_v"):
                 excluir_linha("visitante", chave, excluir_v)
                 st.warning("Ficha de visitante excluída.")
+
+    # Upload de documentos complementares
+    st.markdown("### 📌 Upload de Documentos")
+    pasta_documentos = f"documentos_{chave}"
+    os.makedirs(pasta_documentos, exist_ok=True)
+
+    arquivo = st.file_uploader("Carregar documento (PDF, DOCX, TXT)", key=f"{chave}_uploader")
+    if arquivo is not None:
+        caminho_arquivo = os.path.join(pasta_documentos, arquivo.name)
+        with open(caminho_arquivo, "wb") as f:
+            f.write(arquivo.read())
+        st.success(f"Documento '{arquivo.name}' salvo com sucesso!")
+
+    documentos_salvos = os.listdir(pasta_documentos)
+    if documentos_salvos:
+        st.markdown("### 📅 Documentos Salvos")
+        for doc in documentos_salvos:
+            caminho = os.path.join(pasta_documentos, doc)
+            with open(caminho, "rb") as f:
+                st.download_button(label=f"📄 Baixar: {doc}", data=f, file_name=doc, mime="application/octet-stream", key=f"{chave}_{doc}")
 
 # Executar interface em cada aba
 for aba, chave in zip(abas, metodologias):
