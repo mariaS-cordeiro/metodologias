@@ -55,6 +55,11 @@ def salvar_ficha_grupo(chave, dados):
     df = pd.concat([df, pd.DataFrame([dados])], ignore_index=True)
     df.to_csv(arquivo, index=False)
 
+def excluir_linha(arquivo, index):
+    df = pd.read_csv(arquivo)
+    df = df.drop(index)
+    df.to_csv(arquivo, index=False)
+
 def interface_metodologia(titulo, descricao, video_url, chave):
     st.markdown(f"### 🧭 Sobre {titulo}")
     st.write(descricao)
@@ -95,7 +100,12 @@ def interface_metodologia(titulo, descricao, video_url, chave):
         df = pd.read_csv(arquivo)
         st.dataframe(df)
 
-# Executa interface em cada aba
+        excluir = st.number_input("Digite o índice da linha que deseja excluir", min_value=0, max_value=len(df)-1, step=1, key=f"{chave}_excluir")
+        if st.button("🗑️ Excluir linha selecionada", key=f"{chave}_botao_excluir"):
+            excluir_linha(arquivo, excluir)
+            st.warning("Linha excluída. Recarregue a página para atualizar a tabela.")
+
+# Executa interface por aba
 for aba, chave in zip(abas, metodologias):
     descricao, video = abas_textos[chave]
     with aba:
